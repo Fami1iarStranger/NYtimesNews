@@ -4,6 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.andronews2.api.ApiClient;
 import com.example.andronews2.api.ApiInterface;
@@ -13,6 +14,8 @@ import com.example.andronews2.viewed.ResultsViewed;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +34,13 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
 
         recyclerView = findViewById(R.id.recyclerViewViewed);
 
@@ -55,7 +65,20 @@ public class MainActivity extends AppCompatActivity  {
             public void onResponse(Call<NewsViewed> call, Response<NewsViewed> response) {
                 if(response.isSuccessful() && response.body().getResultsViewed() != null) {
 
-                    if(ResultsViewed.isEmpty())
+                    if(!resultsVieweds.isEmpty()) {
+                        resultsVieweds.clear();
+                    }
+
+                    resultsVieweds = response.body().getResultsViewed();
+                    adapter = new Adapter(resultsVieweds, MainActivity.this);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+
+
+
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "No Result!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -64,8 +87,6 @@ public class MainActivity extends AppCompatActivity  {
 
             }
         });
-
-
 
     }
 
