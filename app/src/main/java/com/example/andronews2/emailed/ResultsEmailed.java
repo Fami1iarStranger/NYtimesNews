@@ -45,7 +45,7 @@ public class ResultsEmailed {
 
     @SerializedName("asset_id")
     @Expose
-    private int asset_id;
+    private long asset_id;
 
     @SerializedName("nytdsection")
     @Expose
@@ -171,7 +171,7 @@ public class ResultsEmailed {
         this.id = id;
     }
 
-    public int getAsset_id() {
+    public long getAsset_id() {
         return asset_id;
     }
 

@@ -1,74 +1,48 @@
 package com.example.andronews2.api;
 
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import com.example.andronews2.emailed.NewsEmailed;
+import com.example.andronews2.shared.NewsShared;
+import com.example.andronews2.viewed.NewsViewed;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://api.nytimes.com/svc/mostpopular/v2/";
-    public static Retrofit retrofit;
-    public static Retrofit getApiClient() {
+    public static final String BASE_URL = "https://api.nytimes.com";
 
-        if(retrofit == null) {
+    private static final String API_KEY = "r8EXYsSAEXcpM27gAUlXwaWAoLJ6NL2M";
 
-            retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
-                    .client(getUnsafeOkHttpClient().build())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
+    private final ApiInterface api;
 
-        return retrofit;
+    public ApiClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.level(HttpLoggingInterceptor.Level.BASIC);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        api = retrofit.create(ApiInterface.class);
     }
 
-    public static OkHttpClient.Builder getUnsafeOkHttpClient() {
+    public Call<NewsViewed> getViewed(String period) {
+        return api.getViewed(period, API_KEY);
+    }
 
-        try {
-            final TrustManager[] trustAllCerts = new TrustManager[] {
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+    public Call<NewsEmailed> getEmailed(String period) {
+        return api.getEmailed(period, API_KEY);
+    }
 
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-
-                        }
-
-                        @Override
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return new java.security.cert.X509Certificate[]{};
-                        }
-                    }
-            };
-
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-
-            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-            return builder;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public Call<NewsShared> getShared(String period) {
+        return api.getShared(period, API_KEY);
     }
 }

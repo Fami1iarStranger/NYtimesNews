@@ -1,71 +1,69 @@
 package com.example.andronews2;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
-
+import android.support.v4.view.ViewPager;
 import com.example.andronews2.api.ApiClient;
-import com.example.andronews2.api.ApiInterface;
 import com.example.andronews2.viewed.NewsViewed;
 import com.example.andronews2.viewed.ResultsViewed;
-
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity  {
 
-    public static final String API_KEY = "r8EXYsSAEXcpM27gAUlXwaWAoLJ6NL2M";
-    public static final String period = "1";
+
+public class MainActivity extends AppCompatActivity {
+
+    public static String period = "1";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<ResultsViewed> resultsVieweds = new ArrayList<>();
     private Adapter adapter;
     private String TAG = MainActivity.class.getSimpleName();
+    public static LinearLayout linearLayout;
+
+
+    private static final String[] data = {"day", "week", "month"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build();
+        recyclerView = findViewById(R.id.recyclerView);
 
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        MyPagerAdapter adapter = new MyPagerAdapter(this,getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        recyclerView = findViewById(R.id.recyclerViewViewed);
-
-        //переписал
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Viewed"));
-        tabLayout.addTab(tabLayout.newTab().setText("Emailed"));
-        tabLayout.addTab(tabLayout.newTab().setText("Shared"));
+        linearLayout = findViewById(R.id.LinearLayout_for_color);
 
         LoadJson();
+
     }
 
     public void LoadJson() {
+        new ApiClient().getViewed(period).enqueue(new Callback<NewsViewed>() {
 
-        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-
-        Call<NewsViewed> call;
-        call = apiInterface.getViewed(period, API_KEY);
-
-        call.enqueue(new Callback<NewsViewed>() {
             @Override
-            public void onResponse(Call<NewsViewed> call, Response<NewsViewed> response) {
-                if(response.isSuccessful() && response.body().getResultsViewed() != null) {
+            public void onResponse(@NotNull Call<NewsViewed> call, @NotNull Response<NewsViewed> response) {
+                if (response.isSuccessful() && response.body().getResultsViewed() != null) {
 
-                    if(!resultsVieweds.isEmpty()) {
+                    if (!resultsVieweds.isEmpty()) {
                         resultsVieweds.clear();
                     }
 
@@ -74,20 +72,15 @@ public class MainActivity extends AppCompatActivity  {
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-
-
-                }
-                else {
+                } else {
                     Toast.makeText(MainActivity.this, "No Result!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<NewsViewed> call, Throwable t) {
-
+            public void onFailure(@NotNull Call<NewsViewed> call, @NotNull Throwable t) {
+                Log.e(TAG, "failed to load news", t);
             }
         });
-
     }
-
 }

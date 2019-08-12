@@ -41,11 +41,11 @@ public class ResultsShared {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private long id;
 
     @SerializedName("asset_id")
     @Expose
-    private int asset_id;
+    private long asset_id;
 
     @SerializedName("nytdsection")
     @Expose
@@ -163,7 +163,7 @@ public class ResultsShared {
         this.section = section;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -171,7 +171,7 @@ public class ResultsShared {
         this.id = id;
     }
 
-    public int getAsset_id() {
+    public long getAsset_id() {
         return asset_id;
     }
 

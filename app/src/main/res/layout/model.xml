@@ -37,7 +37,7 @@
             android:text="Тут будет название статьи: Надо проверить длину текста и как он переходит на новую строку. Так же надо сделать выравнивание  и посмотреть хватит ли высоты 50dp для текста."/>
 
         <TextView
-            android:id="@+id/date_article"
+            android:id="@+id/article_date"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"

@@ -25,7 +25,7 @@ public class MediaViewed {
 
     @SerializedName("approved_for_syndication")
     @Expose
-    private boolean approved_for_syndication;
+    private long approved_for_syndication;
 
     @SerializedName("media-metadata")
     @Expose
@@ -63,11 +63,11 @@ public class MediaViewed {
         this.copyright = copyright;
     }
 
-    public boolean isApproved_for_syndication() {
+    public long isApproved_for_syndication() {
         return approved_for_syndication;
     }
 
-    public void setApproved_for_syndication(boolean approved_for_syndication) {
+    public void setApproved_for_syndication(long approved_for_syndication) {
         this.approved_for_syndication = approved_for_syndication;
     }
 

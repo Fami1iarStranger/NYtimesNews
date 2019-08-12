@@ -49,11 +49,11 @@ public class ResultsViewed {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private long id;
 
     @SerializedName("asset_id")
     @Expose
-    private int asset_id;
+    private long asset_id;
 
     @SerializedName("views")
     @Expose
@@ -62,18 +62,6 @@ public class ResultsViewed {
     @SerializedName("des_facet")
     @Expose
     private List<String> des_facet;
-
-    @SerializedName("org_facet")
-    @Expose
-    private List<String> org_facet;
-
-    @SerializedName("per_facet")
-    @Expose
-    private List<String> per_facet;
-
-    @SerializedName("geo_facet")
-    @Expose
-    private List<String>  geo_facet;
 
     @SerializedName("media")
     @Expose
@@ -159,7 +147,7 @@ public class ResultsViewed {
         this.source = source;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -167,7 +155,7 @@ public class ResultsViewed {
         this.id = id;
     }
 
-    public int getAsset_id() {
+    public long getAsset_id() {
         return asset_id;
     }
 
@@ -189,30 +177,6 @@ public class ResultsViewed {
 
     public void setDes_facet(List<String> des_facet) {
         this.des_facet = des_facet;
-    }
-
-    public List<String> getOrg_facet() {
-        return org_facet;
-    }
-
-    public void setOrg_facet(List<String> org_facet) {
-        this.org_facet = org_facet;
-    }
-
-    public List<String> getPer_facet() {
-        return per_facet;
-    }
-
-    public void setPer_facet(List<String> per_facet) {
-        this.per_facet = per_facet;
-    }
-
-    public List<String> getGeo_facet() {
-        return geo_facet;
-    }
-
-    public void setGeo_facet(List<String> geo_facet) {
-        this.geo_facet = geo_facet;
     }
 
     public List<MediaViewed> getMediaViewed() {

@@ -28,15 +28,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.model, viewGroup, false);
         return new MyViewHolder(view, onItemClickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int position) {
         final MyViewHolder holder = viewHolder;
-        ResultsViewed model = resultsVieweds.get(i);
+        ResultsViewed model = resultsVieweds.get(position);
 
         RequestOptions requestOptions = new RequestOptions();
 
@@ -69,7 +69,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
             itemView.setOnClickListener(this);
             article = itemView.findViewById(R.id.article);
-            date = itemView.findViewById(R.id.date_article);
+            date = itemView.findViewById(R.id.article_date);
             img = itemView.findViewById(R.id.img_article);
 
             this.onItemClickListener = onItemClickListener;
