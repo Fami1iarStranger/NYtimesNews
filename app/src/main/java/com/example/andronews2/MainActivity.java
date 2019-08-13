@@ -1,18 +1,16 @@
 package com.example.andronews2;
 
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 import android.support.v4.view.ViewPager;
 import com.example.andronews2.api.ApiClient;
+import com.example.andronews2.viewed.MediaMetaDataViewed;
 import com.example.andronews2.viewed.NewsViewed;
 import com.example.andronews2.viewed.ResultsViewed;
 import org.jetbrains.annotations.NotNull;
@@ -22,37 +20,42 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
 public class MainActivity extends AppCompatActivity {
 
     public static String period = "1";
     private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+
     private List<ResultsViewed> resultsVieweds = new ArrayList<>();
-    private Adapter adapter;
+    private List<MediaMetaDataViewed> mImage = new ArrayList<>();
+
     private String TAG = MainActivity.class.getSimpleName();
-    public static LinearLayout linearLayout;
-
-
-    private static final String[] data = {"day", "week", "month"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
-
+        //ViewPager
         ViewPager viewPager = findViewById(R.id.viewPager);
-        MyPagerAdapter adapter = new MyPagerAdapter(this,getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
+        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(this,getSupportFragmentManager());
+        viewPager.setAdapter(myPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        linearLayout = findViewById(R.id.LinearLayout_for_color);
+        //RecyclerView
+        recyclerView = findViewById(R.id.recycler_View);
+        layoutManager = new LinearLayoutManager(this);
+        mAdapter = new MyAdapter(this, resultsVieweds, mImage);
 
-        LoadJson();
+        //ошибки
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
+
+       LoadJson();
 
     }
 
@@ -68,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     resultsVieweds = response.body().getResultsViewed();
-                    adapter = new Adapter(resultsVieweds, MainActivity.this);
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
 
                 } else {
                     Toast.makeText(MainActivity.this, "No Result!", Toast.LENGTH_SHORT).show();

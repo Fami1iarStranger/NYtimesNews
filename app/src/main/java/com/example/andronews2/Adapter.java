@@ -1,7 +1,8 @@
-package com.example.andronews2;
+/*package com.example.andronews2;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<ResultsViewed> resultsVieweds;
     private Context context;
     private OnItemClickListener onItemClickListener;
+    CardView cardView;
 
     public Adapter(List<ResultsViewed> resultsVieweds, Context context) {
         this.resultsVieweds = resultsVieweds;
@@ -68,6 +70,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             super(itemView);
 
             itemView.setOnClickListener(this);
+            cardView = itemView.findViewById(R.id.cardViewID);
             article = itemView.findViewById(R.id.article);
             date = itemView.findViewById(R.id.article_date);
             img = itemView.findViewById(R.id.img_article);
@@ -82,3 +85,5 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         }
     }
 }
+
+*/
