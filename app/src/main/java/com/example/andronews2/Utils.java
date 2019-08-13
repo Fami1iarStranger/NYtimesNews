@@ -1,4 +1,4 @@
-package com.example.andronews2;
+/*package com.example.andronews2;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -65,3 +65,4 @@ public class Utils {
         return country.toLowerCase();
     }
 }
+*/

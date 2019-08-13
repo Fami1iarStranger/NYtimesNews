@@ -16,7 +16,8 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private Context context;
-    //правильно ли указаны параметры???
+
+    //correct param??
     private List<ResultsViewed> resultsVieweds;
     private List<MediaMetaDataViewed> mImage;
 
@@ -35,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return myViewHolder;
     }
 
-    // correct?
+    // correct for image???
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
         ResultsViewed resultsViewed = resultsVieweds.get(position);

@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-
     private List<ResultsViewed> resultsVieweds = new ArrayList<>();
     private List<MediaMetaDataViewed> mImage = new ArrayList<>();
 
@@ -45,25 +44,25 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        //RecyclerView
+        initRecyclerView();
+        LoadJson();
+
+    }
+
+    private void initRecyclerView() {
         recyclerView = findViewById(R.id.recycler_View);
         layoutManager = new LinearLayoutManager(this);
         mAdapter = new MyAdapter(this, resultsVieweds, mImage);
-
-        //ошибки
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-
-       LoadJson();
-
     }
 
     public void LoadJson() {
         new ApiClient().getViewed(period).enqueue(new Callback<NewsViewed>() {
 
             @Override
-            public void onResponse(@NotNull Call<NewsViewed> call, @NotNull Response<NewsViewed> response) {
+            public void onResponse(Call<NewsViewed> call, Response<NewsViewed> response) {
                 if (response.isSuccessful() && response.body().getResultsViewed() != null) {
 
                     if (!resultsVieweds.isEmpty()) {
@@ -72,14 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
                     resultsVieweds = response.body().getResultsViewed();
                     mAdapter.notifyDataSetChanged();
-
-                } else {
-                    Toast.makeText(MainActivity.this, "No Result!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(@NotNull Call<NewsViewed> call, @NotNull Throwable t) {
+            public void onFailure(Call<NewsViewed> call, Throwable t) {
                 Log.e(TAG, "failed to load news", t);
             }
         });

@@ -59,9 +59,9 @@ public class ResultsViewed {
     @Expose
     private int views;
 
-    @SerializedName("des_facet")
-    @Expose
-    private List<String> des_facet;
+    //@SerializedName("des_facet")
+    //@Expose
+    //private List<String> des_facet;
 
     @SerializedName("media")
     @Expose
@@ -171,13 +171,13 @@ public class ResultsViewed {
         this.views = views;
     }
 
-    public List<String> getDes_facet() {
-        return des_facet;
-    }
+    //public List<String> getDes_facet() {
+    //    return des_facet;
+    //}
 
-    public void setDes_facet(List<String> des_facet) {
-        this.des_facet = des_facet;
-    }
+    //public void setDes_facet(List<String> des_facet) {
+    //    this.des_facet = des_facet;
+    //}
 
     public List<MediaViewed> getMediaViewed() {
         return mediaViewed;
