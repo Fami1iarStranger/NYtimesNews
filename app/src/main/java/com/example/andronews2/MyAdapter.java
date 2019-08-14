@@ -18,8 +18,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private Context context;
 
     //correct param??
-    private List<ResultsViewed> resultsVieweds;
-    private List<MediaMetaDataViewed> mImage;
+    private List<ResultsViewed> resultsVieweds = new ArrayList<>();
+    private List<MediaMetaDataViewed> mImage = new ArrayList<>();
 
     public MyAdapter(Context context, List<ResultsViewed> resultsVieweds, List<MediaMetaDataViewed> mImage) {
         this.context = context;
@@ -40,10 +40,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
         ResultsViewed resultsViewed = resultsVieweds.get(position);
-        Glide.with(context)
-                .asBitmap()
-                .load(mImage)
-                .into(myViewHolder.img_article);
+        //Glide.with(context)
+        //        .asBitmap()
+        //        .load(mImage)
+        //        .into(myViewHolder.img_article);
         myViewHolder.article.setText(resultsViewed.getTitle());
         myViewHolder.article_date.setText(resultsViewed.getPublished_date());
     }

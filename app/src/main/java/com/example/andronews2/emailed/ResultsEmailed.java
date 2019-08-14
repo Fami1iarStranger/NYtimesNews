@@ -103,183 +103,87 @@ public class ResultsEmailed {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getAdx_keywords() {
         return adx_keywords;
-    }
-
-    public void setAdx_keywords(String adx_keywords) {
-        this.adx_keywords = adx_keywords;
     }
 
     public String getSubsection() {
         return subsection;
     }
 
-    public void setSubsection(String subsection) {
-        this.subsection = subsection;
-    }
-
     public int getEmail_count() {
         return email_count;
-    }
-
-    public void setEmail_count(int email_count) {
-        this.email_count = email_count;
     }
 
     public String getCount_type() {
         return count_type;
     }
 
-    public void setCount_type(String count_type) {
-        this.count_type = count_type;
-    }
-
     public String getColumn() {
         return column;
-    }
-
-    public void setColumn(String column) {
-        this.column = column;
     }
 
     public int getEta_id() {
         return eta_id;
     }
 
-    public void setEta_id(int eta_id) {
-        this.eta_id = eta_id;
-    }
-
     public String getSection() {
         return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public long getAsset_id() {
-        return asset_id;
-    }
-
-    public void setAsset_id(int asset_id) {
-        this.asset_id = asset_id;
-    }
-
     public String getNytdsection() {
         return nytdsection;
-    }
-
-    public void setNytdsection(String nytdsection) {
-        this.nytdsection = nytdsection;
     }
 
     public String getByline() {
         return byline;
     }
 
-    public void setByline(String byline) {
-        this.byline = byline;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAbstractNews() {
         return abstractNews;
-    }
-
-    public void setAbstractNews(String abstractNews) {
-        this.abstractNews = abstractNews;
     }
 
     public String getPublished_date() {
         return published_date;
     }
 
-    public void setPublished_date(String published_date) {
-        this.published_date = published_date;
-    }
-
     public String getSource() {
         return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 
     public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(String updated) {
-        this.updated = updated;
-    }
-
     public List<String> getDes_facet() {
         return des_facet;
-    }
-
-    public void setDes_facet(List<String> des_facet) {
-        this.des_facet = des_facet;
     }
 
     public List<String> getOrg_facet() {
         return org_facet;
     }
 
-    public void setOrg_facet(List<String> org_facet) {
-        this.org_facet = org_facet;
-    }
-
     public List<String> getPer_facet() {
         return per_facet;
-    }
-
-    public void setPer_facet(List<String> per_facet) {
-        this.per_facet = per_facet;
     }
 
     public List<String> getGeo_facet() {
         return geo_facet;
     }
 
-    public void setGeo_facet(List<String> geo_facet) {
-        this.geo_facet = geo_facet;
-    }
-
     public List<MediaEmailed> getMediaEmailed() {
         return mediaEmailed;
-    }
-
-    public void setMediaEmailed(List<MediaEmailed> mediaEmailed) {
-        this.mediaEmailed = mediaEmailed;
     }
 }
