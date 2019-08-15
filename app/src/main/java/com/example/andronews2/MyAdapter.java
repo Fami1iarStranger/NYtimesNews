@@ -1,5 +1,6 @@
 package com.example.andronews2;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NotNull MyViewHolder myViewHolder, int position) {
+    public void onBindViewHolder(@NotNull MyViewHolder myViewHolder, final int position) {
         com.example.andronews2.data.Results results = resultsList.get(position);
 
         Glide.with(myViewHolder.img_article.getContext())
@@ -37,6 +38,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         myViewHolder.article.setText(results.getTitle());
         myViewHolder.article_date.setText(results.getPublished_date());
         myViewHolder.section.setText(results.getSection());
+
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SecondActivity.class);
+                intent.putExtra("key", resultsList.get(position).getUrl());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
