@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.andronews2.api.ApiClient;
-import com.example.andronews2.emailed.News;
-import com.example.andronews2.emailed.Results;
+import com.example.andronews2.data.News;
+import com.example.andronews2.data.Results;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import retrofit2.Call;
@@ -35,13 +35,13 @@ public class TabEmailed extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
 
-        //LoadJsonEmailed();
+        LoadJsonEmailed();
 
         return rootView;
     }
-/*
+
     public void LoadJsonEmailed() {
-        new ApiClient().getEmailed(period).enqueue(new Callback<News>() {
+        new ApiClient().getViewed(period).enqueue(new Callback<News>() {
 
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
@@ -57,5 +57,4 @@ public class TabEmailed extends Fragment {
             }
         });
     }
-*/
 }

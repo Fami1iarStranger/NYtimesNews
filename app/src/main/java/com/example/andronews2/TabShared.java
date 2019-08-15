@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.andronews2.api.ApiClient;
-import com.example.andronews2.shared.News;
-import com.example.andronews2.shared.Results;
+import com.example.andronews2.data.News;
+import com.example.andronews2.data.Results;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import retrofit2.Call;
@@ -35,11 +35,11 @@ public class TabShared extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
 
-        //LoadJsonShared();
+        LoadJsonShared();
 
         return rootView;
     }
-/*
+
     public void LoadJsonShared() {
         new ApiClient().getShared(period).enqueue(new Callback<News>() {
 
@@ -57,5 +57,4 @@ public class TabShared extends Fragment {
             }
         });
     }
-    */
 }

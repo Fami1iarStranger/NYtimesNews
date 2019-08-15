@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.andronews2.api.ApiClient;
-import com.example.andronews2.viewed.News;
-import com.example.andronews2.viewed.Results;
+import com.example.andronews2.data.News;
+import com.example.andronews2.data.Results;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import retrofit2.Call;
@@ -41,7 +41,7 @@ public class TabViewed extends Fragment {
     }
 
     public void LoadJsonViewed() {
-        new ApiClient().getViewed(period).enqueue(new Callback<News>() {
+        new ApiClient().getEmailed(period).enqueue(new Callback<News>() {
 
             @Override
             public void onResponse(Call<News> call, Response<News> response) {

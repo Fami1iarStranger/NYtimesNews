@@ -1,7 +1,5 @@
 package com.example.andronews2.api;
 
-import com.example.andronews2.emailed.News;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -32,15 +30,15 @@ public class ApiClient {
         api = retrofit.create(ApiInterface.class);
     }
 
-    public Call<com.example.andronews2.viewed.News> getViewed(String period) {
+    public Call<com.example.andronews2.data.News> getViewed(String period) {
         return api.getViewed(period, API_KEY);
     }
 
-    public Call<News> getEmailed(String period) {
+    public Call<com.example.andronews2.data.News> getEmailed(String period) {
         return api.getEmailed(period, API_KEY);
     }
 
-    public Call<com.example.andronews2.shared.News> getShared(String period) {
+    public Call<com.example.andronews2.data.News> getShared(String period) {
         return api.getShared(period, API_KEY);
     }
 }

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private List<com.example.andronews2.viewed.Results> resultsList = new ArrayList<>();
+    private List<com.example.andronews2.data.Results> resultsList = new ArrayList<>();
 
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -28,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NotNull MyViewHolder myViewHolder, int position) {
-        com.example.andronews2.viewed.Results results = resultsList.get(position);
+        com.example.andronews2.data.Results results = resultsList.get(position);
 
         Glide.with(myViewHolder.img_article.getContext())
                 .load(resultsList.get(position).getMedia().get(0).getMediaMetaData().get(2).getUrl())
@@ -43,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return resultsList.size();
     }
 
-    public void setResultsList(@NonNull List<com.example.andronews2.viewed.Results> resultsList) {
+    public void setResultsList(@NonNull List<com.example.andronews2.data.Results> resultsList) {
         this.resultsList = resultsList;
         this.notifyDataSetChanged();
     }
