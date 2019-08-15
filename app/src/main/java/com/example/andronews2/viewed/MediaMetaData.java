@@ -3,7 +3,7 @@ package com.example.andronews2.viewed;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MediaMetaDataViewed {
+public class MediaMetaData {
 
     @SerializedName("url")
     @Expose

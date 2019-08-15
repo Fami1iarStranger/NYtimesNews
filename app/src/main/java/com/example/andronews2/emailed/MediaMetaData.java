@@ -1,9 +1,9 @@
-package com.example.andronews2.shared;
+package com.example.andronews2.emailed;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MediaMetaDataShared {
+public class MediaMetaData {
 
     @SerializedName("url")
     @Expose

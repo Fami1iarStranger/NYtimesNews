@@ -5,11 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResultsViewed {
+public class Results {
 
     @SerializedName("url")
     @Expose
     private String url;
+
+    @SerializedName("title")
+    @Expose
+    private String title;
+
+    @SerializedName("published_date")
+    @Expose
+    private String published_date;
 
     @SerializedName("adx_keywords")
     @Expose
@@ -23,30 +31,6 @@ public class ResultsViewed {
     @Expose
     private String section;
 
-    @SerializedName("byline")
-    @Expose
-    private String byline;
-
-    @SerializedName("type")
-    @Expose
-    private String type;
-
-    @SerializedName("title")
-    @Expose
-    private String title;
-
-    @SerializedName("abstract")
-    @Expose
-    private String abstractNews;
-
-    @SerializedName("published_date")
-    @Expose
-    private String published_date;
-
-    @SerializedName("source")
-    @Expose
-    private String source;
-
     @SerializedName("id")
     @Expose
     private long id;
@@ -55,17 +39,25 @@ public class ResultsViewed {
     @Expose
     private long asset_id;
 
-    @SerializedName("views")
+    @SerializedName("byline")
     @Expose
-    private int views;
+    private String byline;
 
-    //@SerializedName("des_facet")
-    //@Expose
-    //private List<String> des_facet;
+    @SerializedName("type")
+    @Expose
+    private String type;
+
+    @SerializedName("abstract")
+    @Expose
+    private String abstractNews;
+
+    @SerializedName("source")
+    @Expose
+    private String source;
 
     @SerializedName("media")
     @Expose
-    private List<MediaViewed> mediaViewed;
+    private List<Media> media;
 
     public String getUrl() {
         return url;
@@ -81,6 +73,14 @@ public class ResultsViewed {
 
     public String getSection() {
         return section;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getAsset_id() {
+        return asset_id;
     }
 
     public String getByline() {
@@ -107,23 +107,7 @@ public class ResultsViewed {
         return source;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public long getAsset_id() {
-        return asset_id;
-    }
-
-    public int getViews() {
-        return views;
-    }
-
-    //public List<String> getDes_facet() {
-    //    return des_facet;
-    //}
-
-    public List<MediaViewed> getMediaViewed() {
-        return mediaViewed;
+    public List<Media> getMedia() {
+        return media;
     }
 }

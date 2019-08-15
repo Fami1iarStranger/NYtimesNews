@@ -1,11 +1,11 @@
-package com.example.andronews2.emailed;
+package com.example.andronews2.shared;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class NewsEmailed {
+public class News {
 
     @SerializedName("status")
     @Expose
@@ -21,7 +21,7 @@ public class NewsEmailed {
 
     @SerializedName("results")
     @Expose
-    private List<ResultsEmailed> resultsEmailed;
+    private List<Results> results;
 
     public String getStatus() {
         return status;
@@ -35,7 +35,7 @@ public class NewsEmailed {
         return num_results;
     }
 
-    public List<ResultsEmailed> getResultsEmailed() {
-        return resultsEmailed;
+    public List<Results> getResults() {
+        return results;
     }
 }

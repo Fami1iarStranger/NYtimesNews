@@ -7,20 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-import com.example.andronews2.emailed.ResultsEmailed;
-import com.example.andronews2.shared.ResultsShared;
-import com.example.andronews2.viewed.ResultsViewed;
+
 
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private List<ResultsViewed> resultsViewedList = new ArrayList<>();
+    private List<com.example.andronews2.viewed.Results> resultsList = new ArrayList<>();
 
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -32,21 +28,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NotNull MyViewHolder myViewHolder, int position) {
-        ResultsViewed resultsViewed = resultsViewedList.get(position);
+        com.example.andronews2.viewed.Results results = resultsList.get(position);
+
         Glide.with(myViewHolder.img_article.getContext())
-                .load(resultsViewedList.get(position).getMediaViewed().get(0).getMediaMetaDataViewed().get(2).getUrl())
+                .load(resultsList.get(position).getMedia().get(0).getMediaMetaData().get(2).getUrl())
                 .into(myViewHolder.img_article);
-        myViewHolder.article.setText(resultsViewed.getTitle());
-        myViewHolder.article_date.setText(resultsViewed.getPublished_date());
+        myViewHolder.article.setText(results.getTitle());
+        myViewHolder.article_date.setText(results.getPublished_date());
+        myViewHolder.section.setText(results.getSection());
     }
 
     @Override
     public int getItemCount() {
-        return resultsViewedList.size();
+        return resultsList.size();
     }
 
-    public void setResultsViewedList(@NonNull List<ResultsViewed> resultsViewedList) {
-        this.resultsViewedList = resultsViewedList;
+    public void setResultsList(@NonNull List<com.example.andronews2.viewed.Results> resultsList) {
+        this.resultsList = resultsList;
         this.notifyDataSetChanged();
     }
 
@@ -55,12 +53,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public ImageView img_article;
         public TextView article;
         public TextView article_date;
+        public TextView section;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             img_article = itemView.findViewById(R.id.img_article);
             article = itemView.findViewById(R.id.article);
             article_date = itemView.findViewById(R.id.article_date);
+            section = itemView.findViewById(R.id.section_news);
         }
     }
 }

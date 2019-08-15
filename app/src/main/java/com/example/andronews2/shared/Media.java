@@ -1,11 +1,11 @@
-package com.example.andronews2.viewed;
+package com.example.andronews2.shared;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MediaViewed {
+public class Media {
 
     @SerializedName("type")
     @Expose
@@ -23,13 +23,9 @@ public class MediaViewed {
     @Expose
     private String copyright;
 
-    @SerializedName("approved_for_syndication")
-    @Expose
-    private long approved_for_syndication;
-
     @SerializedName("media-metadata")
     @Expose
-    private List<MediaMetaDataViewed> mediaMetaDataViewed = null;
+    private List<MediaMetaData> mediaMetaData;
 
     public String getType() {
         return type;
@@ -47,11 +43,7 @@ public class MediaViewed {
         return copyright;
     }
 
-    public long isApproved_for_syndication() {
-        return approved_for_syndication;
-    }
-
-    public List<MediaMetaDataViewed> getMediaMetaDataViewed() {
-        return mediaMetaDataViewed;
+    public List<MediaMetaData> getMediaMetaData() {
+        return mediaMetaData;
     }
 }
