@@ -46,12 +46,8 @@ public class TabViewed extends Fragment {
             @Override
             public void onResponse(Call<NewsViewed> call, Response<NewsViewed> response) {
                 if (response.isSuccessful() && response.body().getResultsViewed() != null) {
-
                     List<ResultsViewed> resultsViewed = response.body().getResultsViewed();
-                    //List<MediaMetaDataViewed> mediaMetaDataViewed = response.body().getMediaMetaDataViewed();
-
                     mAdapter.setResultsViewedList(resultsViewed);
-                    //mAdapter.setmImage(mediaMetaDataViewed);
                 }
             }
 
