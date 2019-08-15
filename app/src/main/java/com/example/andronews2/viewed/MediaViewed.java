@@ -29,7 +29,7 @@ public class MediaViewed {
 
     @SerializedName("media-metadata")
     @Expose
-    private List<MediaMetaDataViewed> mediaMetaDataViewed;
+    private List<MediaMetaDataViewed> mediaMetaDataViewed = null;
 
     public String getType() {
         return type;
