@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToSecondActivity(View v) {
 
-        String a = new Results().getUrl();
+        String a = "";
+        String b = Results.getUrl();
+
 
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra("key", a);
